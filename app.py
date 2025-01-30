@@ -21,9 +21,9 @@ def get_grades():
         password = request.form['password'].strip()
         selected_year = request.form['year']
 
-        # Validate username
-        if not email.isdigit() or len(email) != 14:
-            flash("الرقم القومي يجب ان يكون 14 رقما!")
+        # Validate username (National ID)
+        if not email.isdigit() or len(email) not in [9, 14]:
+            flash("الرقم القومي  يجب ان يكون 14 رقما ورقم الجواز يجب ان يكون 9 ارقام!")
             return redirect(url_for('index'))
         
         if not all(ord(char) < 128 for char in email):
